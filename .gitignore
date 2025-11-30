@@ -1,0 +1,75 @@
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+
+### Spring Boot ###
+/target/
+/build/
+!.mvn/wrapper/maven-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+### Maven ###
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+### Gradle ###
+.gradle/
+**/build/
+!gradle-wrapper.jar
+
+### IDE Specific ###
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.springBeans
+
+# VS Code
+.vscode/
+
+### Logs ###
+*.log
+logs/
+
+### OS Files ###
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+### Temporary files ###
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swn
+*.swm
+*.swo
+
+### Docker ###
+/docker-compose.override.yml
+
+### Security ###
+*.key
+*.pem
+*.p12
+
