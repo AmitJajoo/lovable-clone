@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.project'
 version = '0.0.1-SNAPSHOT'
-description = 'AI code generater'
+description = 'AI code generator'
 
 java {
 	toolchain {
