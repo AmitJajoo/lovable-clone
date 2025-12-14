@@ -40,7 +40,9 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     @Override
     public MemberResponse inviteMember(Long projectId, InviteMemberRequest inviteMemberRequest, Long userId) {
         Project project = getAccessibleProjectById(projectId, userId);
-        User invitee = userRepository.findByUsername(inviteMemberRequest.email()).orElseThrow();
+        User invitee = userRepository.findByUsername(inviteMemberRequest.email()).orElseThrow(() ->
+                new ResourceNotFoundException("user", inviteMemberRequest.email())
+        );
 
         if (invitee.getId().equals(userId)) {
             throw new RuntimeException("Cannot Invite yourself");
@@ -80,7 +82,7 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     public void removeProjectMember(Long projectId, Long memberId, Long userId) {
         Project project = getAccessibleProjectById(projectId, userId);
         ProjectMemberId projectMemberId = new ProjectMemberId(projectId, memberId);
-        if(!projectMemberRepository.existsById(projectMemberId)) {
+        if (!projectMemberRepository.existsById(projectMemberId)) {
             throw new RuntimeException("Member not found");
         }
 
