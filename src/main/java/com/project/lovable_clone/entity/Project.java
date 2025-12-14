@@ -12,18 +12,21 @@ import java.time.Instant;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "projects")
+@Table(name = "projects",
+        indexes = {
+                @Index(name = "idx_projects_updated_at_desc", columnList = "updated_at DESC, deleted_at"),
+                @Index(name = "idx_project_deleted_at", columnList = "deleted_at")
+        }
+)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Project {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column(nullable = false)
     String name;
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
-    User owner;
     Boolean isPublic = false;
     @CreationTimestamp
     Instant createdAt;
