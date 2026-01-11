@@ -21,11 +21,14 @@ public class AuthUtil {
     @Value("${jwt.secret-key}")
     private String jwtSecretKey;
 
+    @Value("${jwt.expiration-time}")
+    private Long expirationTimeInMs; // 1 hr
+
     public String generateAccessToken(User user) {
         return Jwts.builder().subject(user.getUsername())
-                .claim("userId", user.getId().toString())
+                .claim("userId", user.getId())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 10))
+                .expiration(new Date(System.currentTimeMillis() + expirationTimeInMs))
                 .signWith(getSecretKey()).compact();
     }
 

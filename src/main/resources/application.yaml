@@ -18,5 +18,7 @@ spring:
 
 jwt:
   secret-key: EvybUPe4GQuRMOH7NOGfXZBpaNiM8vkegVj3NOUKCgZkQTJq5ftxCkEAlygFkZVHOljt5hs9JfPXDtLKmdH9CDsQNDLi2ElpYuunp6amAruVfjSyYOGpS4yfGujChx0b
+  expiration-time: 3600000
+
 
 
