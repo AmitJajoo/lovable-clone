@@ -92,6 +92,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(apiError.status()).body(apiError);
     }
 
+    @ExceptionHandler(PaymentException.class)
+    public ResponseEntity<ApiError> handlePaymentException(PaymentException ex) {
+        ApiError apiError = new ApiError(
+                HttpStatus.BAD_REQUEST,
+                "Payment error."
+        );
+        log.error(apiError.toString(), ex);
+        return ResponseEntity.status(apiError.status()).body(apiError);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGenericException(Exception ex) {
         ApiError apiError = new ApiError(
