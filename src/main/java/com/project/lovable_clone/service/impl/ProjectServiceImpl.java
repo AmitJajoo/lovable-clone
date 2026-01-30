@@ -15,6 +15,7 @@ import com.project.lovable_clone.repository.ProjectRepository;
 import com.project.lovable_clone.repository.UserRepository;
 import com.project.lovable_clone.security.AuthUtil;
 import com.project.lovable_clone.service.ProjectService;
+import com.project.lovable_clone.service.ProjectTemplateService;
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
     ProjectMapper projectMapper;
     ProjectMemberRepository projectMemberRepository;
     AuthUtil authUtil;
+    ProjectTemplateService projectTemplateService;
 
     @Override
     @PreAuthorize("@security.canViewProject(#projectId)")
@@ -69,6 +71,8 @@ public class ProjectServiceImpl implements ProjectService {
                 .build();
 
         projectMemberRepository.save(projectMember);
+
+        projectTemplateService.initializeProjectFromTemplate(project.getId());
         return projectMapper.toProjectResponse(project);
     }
 
